@@ -5,12 +5,12 @@ export default function MovieCards({ image, title }) {
 
   return (
     <div className='h-min'>
-      <div className='w-40 h-60'>
+      <div>
         <Image
           src={`${URL_IMAGE + image}`}
           alt={`Poster ${title}`}
-          width='160'
-          height='240'
+          width='176'
+          height='288'
           className='w-full h-full'
         />
       </div>

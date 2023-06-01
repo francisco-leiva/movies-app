@@ -2,11 +2,10 @@ import { getUpcomingMovies } from '@/api/api';
 import MovieCards from './MovieCards';
 
 export const UpcomingMovies = async () => {
-  const URL_IMAGE = 'https://image.tmdb.org/t/p/w500/';
   const upcomingMovies = await getUpcomingMovies();
 
   return (
-    <section>
+    <section className='grid grid-cols-mobile gap-2 mx-2'>
       {upcomingMovies.map((movie) => {
         return (
           <MovieCards
