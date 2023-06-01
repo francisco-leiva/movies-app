@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { getUpcomingMovies } from '@/api/api';
+import MovieCards from './MovieCards';
 
 export const UpcomingMovies = async () => {
   const URL_IMAGE = 'https://image.tmdb.org/t/p/w500/';
@@ -9,19 +9,11 @@ export const UpcomingMovies = async () => {
     <section>
       {upcomingMovies.map((movie) => {
         return (
-          <div className='h-min' key={movie.id}>
-            <div className='w-40 h-60'>
-              <Image
-                src={`${URL_IMAGE + movie.poster_path}`}
-                alt={`Poster ${movie.title}`}
-                width='160'
-                height='240'
-                className='w-full h-full'
-              />
-            </div>
-
-            <h2>{movie.title}</h2>
-          </div>
+          <MovieCards
+            key={movie.id}
+            image={movie.poster_path}
+            title={movie.title}
+          />
         );
       })}
     </section>
