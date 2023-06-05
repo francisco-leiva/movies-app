@@ -11,7 +11,7 @@ export default function MovieCards({ image, title }) {
           alt={`Poster ${title}`}
           width='176'
           height='288'
-          className='w-full h-full'
+          className='w-auto h-auto'
         />
       </div>
 
