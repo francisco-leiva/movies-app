@@ -1,9 +1,9 @@
-import { UpcomingMovies } from '@/components/UpcomingMovies';
+import { MainSection } from '@/components/MainSection';
 
 export default function Home() {
   return (
-    <main className='pt-32'>
-      <UpcomingMovies />
+    <main>
+      <MainSection />
     </main>
   );
 }
