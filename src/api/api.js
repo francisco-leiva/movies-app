@@ -12,3 +12,14 @@ export async function getUpcomingMovies() {
 
   return response.data.results;
 }
+
+export async function searchMovies(searchKey) {
+  const response = await axios.get(`${API_URL}/search/movie`, {
+    params: {
+      api_key: API_KEY,
+      query: searchKey,
+    },
+  });
+
+  return response.data.results;
+}
