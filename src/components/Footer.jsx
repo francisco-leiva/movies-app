@@ -6,7 +6,7 @@ export default function Footer() {
       <div className='max-w-4xl w-full mx-4 flex justify-between items-center text-xl lg:mx-auto'>
         <span>
           <Link href={'https://github.com/francisco-leiva'} target='_blank'>
-          Francisco Leiva®
+            Francisco Leiva®
           </Link>
         </span>
 
