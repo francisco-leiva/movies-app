@@ -7,7 +7,7 @@ export default function Movies({ movieList }) {
         return (
           <MovieCards
             key={movie.id}
-            className={'h-fit text-center'}
+            id={movie.id}
             image={movie.poster}
             title={movie.title}
           />
