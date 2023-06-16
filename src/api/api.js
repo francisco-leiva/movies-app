@@ -16,7 +16,6 @@ export async function getUpcomingMovies() {
     return movies?.map((movie) => ({
       id: movie.id,
       title: movie.title,
-      year: movie.release_date,
       poster: movie.poster_path,
     }));
   } catch (e) {
@@ -38,9 +37,33 @@ export async function searchMovies(searchKey) {
     return searchedMovies?.map((movie) => ({
       id: movie.id,
       title: movie.title,
-      year: movie.release_date,
       poster: movie.poster_path,
     }));
+  } catch (e) {
+    throw new Error('No se pudo encontrar la película');
+  }
+}
+
+export async function getMovieDetails(id) {
+  try {
+    const response = await axios.get(`${API_URL}/movie/${id}`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+
+    const details = response.data;
+    const movieDetails = {
+      title: details.original_title,
+      poster: details.poster_path,
+      description: details.overview,
+      releaseDate: details.release_date,
+      runtime: details.runtime,
+      background: details.backdrop_path,
+      genres: details.genres,
+    };
+
+    return movieDetails;
   } catch (e) {
     throw new Error('No se pudo encontrar la película');
   }

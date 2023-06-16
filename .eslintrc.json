@@ -18,6 +18,8 @@
   "rules": {
     "semi": "off",
     "comma-dangle": "off",
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "react/prop-types": "off",
+    "react/no-unknown-property": "off"
   }
 }
