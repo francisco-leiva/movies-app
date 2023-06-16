@@ -1,3 +1,3 @@
-export default function MoviePage() {
+export default function MovieDetailsPage() {
   return null;
 }
