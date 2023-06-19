@@ -10,6 +10,9 @@ module.exports = {
       gridTemplateColumns: {
         cards: 'repeat(auto-fit, minmax(260px, 1fr))',
       },
+      backgroundImage: {
+        backdrop: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
+      },
     },
   },
   plugins: [],
