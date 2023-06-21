@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function MovieCards({ id, image, title }) {
-  const URL_IMAGE = 'https://image.tmdb.org/t/p/w500/';
+  const URL_IMAGE = 'https://image.tmdb.org/t/p/w500';
 
   return (
     <div className='h-fit text-center'>
