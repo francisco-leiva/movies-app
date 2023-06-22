@@ -56,6 +56,7 @@ export async function getMovieDetails(id) {
     const movieDetails = {
       title: details.original_title,
       poster: details.poster_path,
+      tagline: details.tagline,
       description: details.overview,
       releaseDate: details.release_date,
       runtime: details.runtime,
