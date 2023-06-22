@@ -42,33 +42,37 @@ export default function MoviesDetails({
 
   return (
     <section>
-      <div className='relative max-w-6xl w-full px-2 py-4 flex gap-4 md:mx-auto'>
+      <div className='relative max-w-6xl w-full px-2 py-6 flex flex-col gap-4 sm:py-8 md:mx-auto md:flex-row'>
         <Image
           src={posterImage}
           alt={`Poster ${title}`}
           width={500}
           height={500}
-          className='w-80 h-[30rem] rounded-lg'
+          className='w-60 h-80 self-center rounded-lg sm:w-80 sm:h-[30rem]'
         />
 
         <div className='text-white'>
-          <h2 className='my-4 font-bold text-4xl movieTitle'>{title}</h2>
+          <h2 className='my-4 font-bold text-4xl text-center md:text-left movieTitle'>
+            {title}
+          </h2>
 
-          <div className='mb-4 flex gap-2 text-xl'>
-            <span>{fullReleaseDate}</span>
+          <div className='mb-4 flex flex-col flex-wrap gap-2 text-xl sm:flex-row sm:justify-center md:justify-normal'>
+            <span>&#x2022; {fullReleaseDate}</span>
 
-            <span>{genresNames}</span>
+            <span>&#x2022; {genresNames}</span>
 
-            <span>{formattedRuntime}</span>
+            <span>&#x2022; {formattedRuntime}</span>
           </div>
 
-          <p className='mb-4 italic font-semibold text-xl opacity-60'>
+          <p className='mb-4 italic font-semibold text-xl opacity-60 sm:text-center md:text-left'>
             {tagline}
           </p>
 
-          <div className='w-4/5'>
-            <h3 className='font-bold text-2xl mb-2'>Overview</h3>
-            <p className='text-xl'>{description}</p>
+          <div>
+            <h3 className='mb-2 font-bold text-2xl text-center md:text-left'>
+              Overview
+            </h3>
+            <p className='text-xl text-justify'>{description}</p>
           </div>
         </div>
       </div>
