@@ -11,9 +11,9 @@ export default function MovieCards({ id, image, title }) {
           <Image
             src={`${URL_IMAGE + image}`}
             alt={`Poster ${title}`}
-            width='500'
-            height='500'
-            className='w-80 mx-auto rounded lg:h-[27rem]'
+            width='288'
+            height='432'
+            className='w-80 mx-auto rounded'
           />
         </div>
 

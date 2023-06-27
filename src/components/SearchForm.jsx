@@ -31,8 +31,11 @@ export default function SearchForm() {
         onChange={handleChange}
       />
 
-      <button className='px-2 text-black bg-[#2892D7] rounded-r-lg hover:bg-[#1D70A2]'>
-        <Link href={`/search/${searchKey}`}>
+      <button
+        className='px-2 text-black bg-[#2892D7] rounded-r-lg hover:bg-[#1D70A2]'
+        aria-label='Submit'
+      >
+        <Link href={`/search/${searchKey}`} aria-label='Search movies'>
           <SearchIcon />
         </Link>
       </button>

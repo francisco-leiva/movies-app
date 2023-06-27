@@ -4,7 +4,8 @@ import Footer from '@/components/Footer';
 
 export const metadata = {
   title: 'Movies App',
-  description: 'Application to watch movie trailers',
+  description:
+    'Application to discover upcoming movies, search for movies and view movie details.',
 };
 
 export default function RootLayout({ children }) {
