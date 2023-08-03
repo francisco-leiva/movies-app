@@ -1,15 +1,17 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function MovieCards({ id, image, title }) {
-  const URL_IMAGE = 'https://image.tmdb.org/t/p/w500';
+  const URL_IMAGE = 'https://image.tmdb.org/t/p/w500' + image
+  const URL_NO_IMAGE =
+    'https://lightwidget.com/wp-content/uploads/localhost-file-not-found.jpg'
 
   return (
     <div className='h-fit text-center'>
       <Link href={`/movie/${id}`}>
         <div>
           <Image
-            src={`${URL_IMAGE + image}`}
+            src={image !== null ? URL_IMAGE : URL_NO_IMAGE}
             alt={`Poster ${title}`}
             width='288'
             height='432'
@@ -20,5 +22,5 @@ export default function MovieCards({ id, image, title }) {
         <h2 className='text-xl'>{title}</h2>
       </Link>
     </div>
-  );
+  )
 }

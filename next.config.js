@@ -14,8 +14,14 @@ const nextConfig = {
         port: '',
         pathname: '/t/p/original/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'lightwidget.com',
+        port: '',
+        pathname: '/wp-content/uploads/**',
+      },
     ],
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
