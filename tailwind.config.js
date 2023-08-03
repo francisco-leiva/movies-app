@@ -11,9 +11,10 @@ module.exports = {
         cards: 'repeat(auto-fit, minmax(260px, 1fr))',
       },
       backgroundImage: {
-        backdrop: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
+        titleGradient:
+          'linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234))',
       },
     },
   },
   plugins: [],
-};
+}

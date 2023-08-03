@@ -1,44 +1,38 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { SearchIcon } from './Icons';
+import { useState } from 'react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { SearchIcon } from './Icons'
 
 export default function SearchForm() {
-  const [searchKey, setSearchKey] = useState('');
-  const router = useRouter();
+  const [searchKey, setSearchKey] = useState('')
+  const router = useRouter()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    router.push(`/search/${searchKey}`);
-  };
+    e.preventDefault()
+    router.push(`/search/${searchKey}`)
+  }
 
   const handleChange = (e) => {
-    setSearchKey(e.target.value);
-  };
+    setSearchKey(e.target.value)
+  }
 
   return (
-    <form
-      className='max-w-3xl flex mx-3 mt-2 pb-3 md:mx-auto'
-      onSubmit={handleSubmit}
-    >
+    <form className='w-60 flex' onSubmit={handleSubmit}>
       <input
         id='search'
-        className='w-full h-9 indent-3 rounded-l-lg focus:outline-none'
+        className='w-full h-9 indent-3 rounded-l-full focus:outline-none'
         type='text'
         placeholder='Search'
         onChange={handleChange}
       />
 
-      <button
-        className='px-2 text-black bg-[#2892D7] rounded-r-lg hover:bg-[#1D70A2]'
-        aria-label='Submit'
-      >
+      <button className='px-2 bg-white rounded-r-full' aria-label='Submit'>
         <Link href={`/search/${searchKey}`} aria-label='Search movies'>
           <SearchIcon />
         </Link>
       </button>
     </form>
-  );
+  )
 }
