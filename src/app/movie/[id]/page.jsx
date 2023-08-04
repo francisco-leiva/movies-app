@@ -1,8 +1,8 @@
-import { getMovieDetails } from '@/api/api';
-import MoviesDetails from '@/components/MoviesDetails';
+import { getMovieDetails } from '@/api/api'
+import MoviesDetails from '@/components/MoviesDetails'
 
 export default async function DetailsPage({ params }) {
-  const { id } = params;
+  const { id } = params
   const {
     title,
     poster,
@@ -12,10 +12,10 @@ export default async function DetailsPage({ params }) {
     runtime,
     background,
     genres,
-  } = await getMovieDetails(id);
+  } = await getMovieDetails(id)
 
   return (
-    <main className='pt-32 pb-4'>
+    <main className='pt-24 pb-4'>
       <MoviesDetails
         title={title}
         poster={poster}
@@ -27,5 +27,5 @@ export default async function DetailsPage({ params }) {
         genres={genres}
       />
     </main>
-  );
+  )
 }
