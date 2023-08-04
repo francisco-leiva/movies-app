@@ -1,6 +1,6 @@
-import MovieCards from './MovieCards';
+import MovieCards from './MovieCards'
 
-export default function Movies({ movieList }) {
+export default function MovieList({ movieList }) {
   return (
     <>
       {movieList.map((movie) => {
@@ -11,8 +11,8 @@ export default function Movies({ movieList }) {
             image={movie.poster}
             title={movie.title}
           />
-        );
+        )
       })}
     </>
-  );
+  )
 }
