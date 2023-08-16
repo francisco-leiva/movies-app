@@ -1,6 +1,7 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
+import Image from 'next/image'
+import { URL_POSTER, URL_BACKGROUND } from '@/utils/constants'
 
 export default function MoviesDetails({
   title,
@@ -12,33 +13,29 @@ export default function MoviesDetails({
   background,
   genres,
 }) {
-  // URLs for images
-  const URL_POSTER = 'https://image.tmdb.org/t/p/w500';
-  const URL_BACKGROUND = 'https://image.tmdb.org/t/p/original';
-  // get images
-  const backgroundImage = URL_BACKGROUND + background;
-  const posterImage = URL_POSTER + poster;
+  // full url of images
+  const backgroundImage = URL_BACKGROUND + background
+  const posterImage = URL_POSTER + poster
 
   // format date
-  const date = new Date(releaseDate);
-  const year = date.getFullYear();
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-  const fullReleaseDate = date.toLocaleString('en-GB', options);
+  const date = new Date(releaseDate)
+  const year = date.getFullYear()
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
+  const fullReleaseDate = date.toLocaleString('en-GB', options)
 
   // format hour
   // function to convert minutes to hours and minutes
   const timeConvert = (min) => {
-    const minOfMovie = min;
-    const hours = minOfMovie / 60;
-    const roundedHours = Math.floor(hours);
-    const minutes = (hours - roundedHours) * 60;
-    const roundedMinutes = Math.round(minutes);
-    return `${roundedHours}h ${roundedMinutes}m`;
-  };
-  const formattedRuntime = timeConvert(runtime);
+    const hours = min / 60
+    const roundedHours = Math.floor(hours)
+    const minutes = (hours - roundedHours) * 60
+    const roundedMinutes = Math.round(minutes)
+    return `${roundedHours}h ${roundedMinutes}m`
+  }
+  const formattedRuntime = timeConvert(runtime)
 
   // get genres names and join them
-  const genresNames = genres.map((genre) => genre.name).join(', ');
+  const genresNames = genres.map((genre) => genre.name).join(', ')
 
   return (
     <section>
@@ -102,5 +99,5 @@ export default function MoviesDetails({
         }
       `}</style>
     </section>
-  );
+  )
 }
