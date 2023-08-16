@@ -5,21 +5,31 @@ export function SearchIcon() {
       width='32'
       height='32'
       fill='none'
-      stroke='url(#grad)'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      strokeWidth='2'
+      strokeWidth='1.5'
+      color='#000'
       viewBox='0 0 24 24'
     >
-      <defs>
-        <linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='0%'>
-          <stop offset='0%' stopColor='rgb(134,239,172)' />
-          <stop offset='50%' stopColor='rgb(59,130,246)' />
-          <stop offset='100%' stopColor='rgb(147,51,234)' />
-        </linearGradient>
-      </defs>
-      <path stroke='none' d='M0 0h24v24H0z'></path>
-      <path d='M3 10a7 7 0 1014 0 7 7 0 10-14 0M21 21l-6-6'></path>
+      <path
+        className='stroke-white sm:stroke-black'
+        stroke='#000'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        d='M17 17l4 4M3 11a8 8 0 1016 0 8 8 0 00-16 0z'
+      ></path>
+    </svg>
+  )
+}
+
+export function HamburgerMenuIcon() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='36'
+      height='36'
+      fill='#fff'
+      viewBox='0 0 24 24'
+    >
+      <path d='M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zM3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1z'></path>
     </svg>
   )
 }
