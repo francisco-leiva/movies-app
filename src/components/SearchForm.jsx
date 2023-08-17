@@ -1,37 +1,56 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { SearchIcon } from './Icons'
 
 export default function SearchForm() {
   const [searchKey, setSearchKey] = useState('')
+  const [openSearch, setOpenSearch] = useState(false)
   const router = useRouter()
 
+  const handleChange = (e) => setSearchKey(e.target.value)
   const handleSubmit = (e) => {
     e.preventDefault()
-    router.push(`/search/${searchKey}`)
+    searchKey && router.push(`/search/${searchKey}`)
+    setTimeout(() => {
+      setOpenSearch(false)
+      e.target.reset()
+    }, 600)
   }
 
-  const handleChange = (e) => {
-    setSearchKey(e.target.value)
-  }
+  // function to open search input
+  const handleOpen = () => setOpenSearch(!openSearch)
 
   return (
-    <form className='w-60 flex' onSubmit={handleSubmit}>
+    <form className='flex justify-end sm:w-60' onSubmit={handleSubmit}>
       <input
         id='search'
-        className='w-full h-9 indent-3 rounded-l-full focus:outline-none'
+        className={`${
+          openSearch ? 'inline' : 'hidden'
+        } absolute w-screen h-12 top-20 left-0 z-50 text-lg indent-3 border-2 border-solid border-y-[#E3E3E3] focus:outline-none sm:inline sm:w-full sm:h-9 sm:static sm:border-0 sm:rounded-l-full`}
         type='text'
         placeholder='Search'
         onChange={handleChange}
       />
 
-      <button className='px-2 bg-white rounded-r-full' aria-label='Submit'>
-        <Link href={`/search/${searchKey}`} aria-label='Search movies'>
-          <SearchIcon />
-        </Link>
+      {/* mobile search button */}
+      <button
+        type='button'
+        aria-label='Open search input'
+        className='sm:hidden'
+        onClick={handleOpen}
+      >
+        <SearchIcon />
+      </button>
+
+      {/* desktop search button */}
+      <button
+        type='submit'
+        className='hidden sm:inline sm:px-2 sm:bg-white sm:rounded-r-full'
+        aria-label='Submit'
+      >
+        <SearchIcon />
       </button>
     </form>
   )
