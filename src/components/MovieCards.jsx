@@ -7,15 +7,15 @@ export default function MovieCards({ id, image, title }) {
   const movieImage = URL_IMAGE + image
 
   return (
-    <div className='h-fit text-center'>
+    <div className='w-64 h-fit justify-self-center text-center'>
       <Link href={`/movie/${id}`}>
-        <div>
+        <div className='h-96'>
           <Image
             src={image !== null ? movieImage : URL_NO_IMAGE}
             alt={`Poster ${title}`}
-            width='288'
-            height='432'
-            className='w-80 mx-auto rounded'
+            width='500'
+            height='500'
+            className='w-full h-full object-cover rounded'
           />
         </div>
 
