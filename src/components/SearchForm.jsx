@@ -28,7 +28,7 @@ export default function SearchForm() {
         id='search'
         className={`${
           openSearch ? 'inline' : 'hidden'
-        } absolute w-screen h-12 top-20 left-0 z-50 text-lg indent-3 border-2 border-solid border-y-[#E3E3E3] focus:outline-none sm:inline sm:w-full sm:h-9 sm:static sm:border-0 sm:rounded-l-full`}
+        } absolute w-screen h-12 top-20 left-0 z-50 text-lg indent-3 border-t-2 border-b-2 border-solid border-y-[#E3E3E3] focus:outline-none sm:inline sm:w-full sm:h-9 sm:static sm:border-0 sm:rounded-l-full`}
         type='text'
         placeholder='Search'
         onChange={handleChange}

@@ -15,6 +15,7 @@ export default function MovieCards({ id, image, title }) {
             alt={`Poster ${title}`}
             width='500'
             height='500'
+            priority={true}
             className='w-full h-full object-cover rounded'
           />
         </div>

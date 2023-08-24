@@ -6,7 +6,7 @@ import MobileNavbar from './MobileNavbar'
 export default function Header() {
   return (
     <header className='w-full h-20 fixed bg-[#1B264F] z-50'>
-      <section className='max-w-4xl h-full flex items-center justify-between mx-2 sm:mx-auto'>
+      <section className='max-w-4xl relative h-full flex items-center justify-between px-2 sm:mx-auto lg:px-0'>
         <div className='flex items-center gap-6'>
           <h1 className='mainTitle h-10 text-3xl tracking-[.25rem] bg-titleGradient'>
             <Link href={'/'}>CineFlix</Link>
