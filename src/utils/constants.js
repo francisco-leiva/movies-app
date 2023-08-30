@@ -10,7 +10,6 @@ export const NAVBAR_LINKS = [
 
 // movie image URL
 export const URL_IMAGE = 'https://image.tmdb.org/t/p/w500'
-export const URL_NO_IMAGE =
+export const URL_BACKDROP = 'https://image.tmdb.org/t/p/original'
+export const NO_IMAGE =
   'https://lightwidget.com/wp-content/uploads/localhost-file-not-found.jpg'
-export const URL_POSTER = 'https://image.tmdb.org/t/p/w500'
-export const URL_BACKGROUND = 'https://image.tmdb.org/t/p/original'

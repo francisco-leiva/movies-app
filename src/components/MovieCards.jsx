@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { URL_IMAGE, URL_NO_IMAGE } from '@/utils/constants'
+import { URL_IMAGE, NO_IMAGE } from '@/utils/constants'
 
 export default function MovieCards({ id, image, title }) {
   // full image url
@@ -11,7 +11,7 @@ export default function MovieCards({ id, image, title }) {
       <Link href={`/movie/${id}`}>
         <div className='h-96'>
           <Image
-            src={image !== null ? movieImage : URL_NO_IMAGE}
+            src={image ? movieImage : NO_IMAGE}
             alt={`Poster ${title}`}
             width='500'
             height='500'

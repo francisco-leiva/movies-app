@@ -60,7 +60,7 @@ export async function getMovieDetails(id) {
       description: details.overview,
       releaseDate: details.release_date,
       runtime: details.runtime,
-      background: details.backdrop_path,
+      backdrop: details.backdrop_path,
       genres: details.genres,
     }
 

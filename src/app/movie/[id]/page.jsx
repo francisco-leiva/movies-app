@@ -10,12 +10,12 @@ export default async function DetailsPage({ params }) {
     description,
     releaseDate,
     runtime,
-    background,
+    backdrop,
     genres,
   } = await getMovieDetails(id)
 
   return (
-    <main className='pt-24 pb-4'>
+    <main className='pt-[5.5rem] pb-4'>
       <MoviesDetails
         title={title}
         poster={poster}
@@ -23,7 +23,7 @@ export default async function DetailsPage({ params }) {
         description={description}
         releaseDate={releaseDate}
         runtime={runtime}
-        background={background}
+        backdrop={backdrop}
         genres={genres}
       />
     </main>
