@@ -11,15 +11,15 @@ export default function MoviesDetails({
   backdrop,
   genres,
 }) {
-  // full url of images
+  // backdrop and poster can be null, in that case = NO_IMAGE, otherwise = full image url
   const backdropImage = backdrop ? URL_BACKDROP + backdrop : NO_IMAGE
   const posterImage = poster ? URL_IMAGE + poster : NO_IMAGE
 
-  // format date
-  const date = new Date(releaseDate)
-  const year = date.getFullYear()
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit' }
-  const fullReleaseDate = date.toLocaleString('en-GB', options)
+  // example of releaseDate: '2023-05-31'
+  // split release date by hyphens
+  const date = releaseDate.split('-')
+  const year = date[0]
+  const fullReleaseDate = date.reverse().join('/')
 
   // format hour
   // function to convert minutes to hours and minutes
@@ -32,12 +32,12 @@ export default function MoviesDetails({
   }
   const formattedRuntime = timeConvert(runtime)
 
-  // get genres names and join them
+  // get genres names and join them in a string
   const genresNames = genres.map((genre) => genre.name).join(', ')
 
   return (
-    <section>
-      <div className='w-full h-72 md:h-[30rem]'>
+    <section className='md:relative'>
+      <div className='w-full h-72 sm:h-80 md:h-[30rem] md:absolute md:top-0 md:left-0 md:z-[1] lg:h-[35rem]'>
         <Image
           src={backdropImage}
           alt={`Banner of ${title}`}
@@ -48,7 +48,7 @@ export default function MoviesDetails({
         />
       </div>
 
-      <article className='relative max-w-6xl w-full px-2 py-6 flex flex-col items-center gap-4 sm:py-8 md:mx-auto md:flex-row'>
+      <article className='relative z-[2] max-w-5xl w-full px-2 py-6 flex flex-col items-center gap-4 md:mx-auto md:px-0 md:pt-80 md:flex-row'>
         <div className='absolute top-[-9rem] z-[2] shadow-lg md:static'>
           <Image
             src={posterImage}
@@ -59,33 +59,33 @@ export default function MoviesDetails({
           />
         </div>
 
-        <div className='mt-[10.5rem] sm:mt-[19rem] md:mt-0 md:self-start'>
+        <section className='mt-[10.5rem] sm:mt-[19.5rem] md:mt-0 md:self-start'>
           <div className='my-4 text-3xl flex justify-center items-center sm:text-4xl md:justify-start'>
             <h2 className='font-bold'>{title}</h2>
 
             <span className='ml-2 font-normal opacity-60'>({year})</span>
           </div>
 
-          <div className='mb-4 flex flex-col flex-wrap gap-2 text-xl sm:flex-row sm:justify-center md:justify-normal'>
-            <span>&#x2022; {fullReleaseDate}</span>
+          <ul className='mb-4 flex flex-col flex-wrap gap-2 text-xl sm:flex-row sm:justify-center md:justify-normal'>
+            <li>&#x2022; {fullReleaseDate}</li>
 
-            <span>&#x2022; {genresNames}</span>
+            <li>&#x2022; {genresNames}</li>
 
-            <span>&#x2022; {formattedRuntime}</span>
-          </div>
-
-          <p className='mb-4 italic font-semibold text-xl opacity-60 sm:text-center md:text-left'>
-            {tagline}
-          </p>
+            <li>&#x2022; {formattedRuntime}</li>
+          </ul>
 
           <div>
+            <h3 className='mb-4 italic font-semibold text-xl opacity-60 sm:text-center md:text-left'>
+              {tagline}
+            </h3>
+
             <h3 className='mb-2 font-bold text-2xl text-center md:text-left'>
               Overview
             </h3>
 
             <p className='max-w-xl text-xl'>{description}</p>
           </div>
-        </div>
+        </section>
       </article>
     </section>
   )

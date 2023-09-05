@@ -3,18 +3,18 @@ import Link from 'next/link'
 import { URL_IMAGE, NO_IMAGE } from '@/utils/constants'
 
 export default function MovieCards({ id, image, title }) {
-  // full image url
-  const movieImage = URL_IMAGE + image
+  // image can be null, in that case movieImage = NO_IMAGE, otherwise movieImage = full image url
+  const movieImage = image ? URL_IMAGE + image : NO_IMAGE
 
   return (
-    <div className='w-64 h-fit justify-self-center text-center'>
+    <div className='w-64 h-fit text-center'>
       <Link href={`/movie/${id}`}>
         <div className='h-96'>
           <Image
-            src={image ? movieImage : NO_IMAGE}
+            src={movieImage}
             alt={`Poster ${title}`}
-            width='500'
-            height='500'
+            width={500}
+            height={500}
             priority={true}
             className='w-full h-full object-cover rounded'
           />
