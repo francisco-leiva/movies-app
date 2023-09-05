@@ -22,6 +22,27 @@ export async function getUpcomingMovies() {
   }
 }
 
+export async function getMoviesNowPlaying() {
+  try {
+    const response = await axios.get(`${API_URL}/movie/now_playing`, {
+      params: {
+        api_key: API_KEY,
+      },
+    })
+
+    const movies = response.data.results
+    const mappedMovies = movies.map((movie) => ({
+      id: movie.id,
+      title: movie.title,
+      poster: movie.poster_path,
+    }))
+
+    return mappedMovies
+  } catch (e) {
+    throw new Error('No se pudo encontrar la película')
+  }
+}
+
 export async function searchMovies(searchKey) {
   try {
     const response = await axios.get(`${API_URL}/search/movie`, {
@@ -52,16 +73,16 @@ export async function getMovieDetails(id) {
       },
     })
 
-    const details = response.data
+    const { data } = response
     const movieDetails = {
-      title: details.title,
-      poster: details.poster_path,
-      tagline: details.tagline,
-      description: details.overview,
-      releaseDate: details.release_date,
-      runtime: details.runtime,
-      backdrop: details.backdrop_path,
-      genres: details.genres,
+      title: data.title,
+      poster: data.poster_path,
+      tagline: data.tagline,
+      description: data.overview,
+      releaseDate: data.release_date,
+      runtime: data.runtime,
+      backdrop: data.backdrop_path,
+      genres: data.genres,
     }
 
     return movieDetails
