@@ -43,6 +43,27 @@ export async function getMoviesNowPlaying() {
   }
 }
 
+export async function getPopularTvShows() {
+  try {
+    const response = await axios.get(`${API_URL}/tv/popular`, {
+      params: {
+        api_key: API_KEY,
+      },
+    })
+
+    const tvShows = response.data.results
+    const mappedTvShows = tvShows.map((show) => ({
+      id: show.id,
+      title: show.name,
+      poster: show.poster_path,
+    }))
+
+    return mappedTvShows
+  } catch (e) {
+    throw new Error('No se pudo encontrar la película')
+  }
+}
+
 export async function searchMovies(searchKey) {
   try {
     const response = await axios.get(`${API_URL}/search/movie`, {

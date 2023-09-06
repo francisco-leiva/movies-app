@@ -2,13 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { URL_IMAGE, NO_IMAGE } from '@/utils/constants'
 
-export default function MovieCards({ id, image, title }) {
+export default function TvCards({ id, image, title }) {
   // image can be null, in that case movieImage = NO_IMAGE, otherwise movieImage = full image url
   const movieImage = image ? URL_IMAGE + image : NO_IMAGE
 
   return (
     <div className='w-64 h-fit text-center'>
-      <Link href={`/movie/${id}`}>
+      <Link href={`/tv/${id}`}>
         <div className='h-96'>
           <Image
             src={movieImage}
