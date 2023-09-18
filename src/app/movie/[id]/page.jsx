@@ -1,5 +1,5 @@
 import { getMovieDetails } from '@/api/api'
-import MoviesDetails from '@/components/MoviesDetails'
+import MovieDetails from '@/components/MovieDetails'
 
 export default async function DetailsPage({ params }) {
   const { id } = params
@@ -15,8 +15,8 @@ export default async function DetailsPage({ params }) {
   } = await getMovieDetails(id)
 
   return (
-    <main className='pt-20 pb-4'>
-      <MoviesDetails
+    <main className='pt-20 pb-4 bg-[#646867]'>
+      <MovieDetails
         title={title}
         poster={poster}
         tagline={tagline}

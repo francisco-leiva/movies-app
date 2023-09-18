@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { API_URL, API_KEY } from '@/utils/constants'
 
-export async function getUpcomingMovies() {
+export async function getPopularMovies() {
   try {
-    const response = await axios.get(`${API_URL}/movie/upcoming`, {
+    const response = await axios.get(`${API_URL}/movie/popular`, {
       params: {
         api_key: API_KEY,
       },
@@ -22,7 +22,7 @@ export async function getUpcomingMovies() {
   }
 }
 
-export async function getMoviesNowPlaying() {
+export async function getNowPlayingMovies() {
   try {
     const response = await axios.get(`${API_URL}/movie/now_playing`, {
       params: {
