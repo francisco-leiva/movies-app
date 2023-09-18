@@ -3,9 +3,18 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata = {
-  title: 'Movies App',
+  title: 'Cineflix',
   description:
-    'Application to discover upcoming movies, search for movies and view movie details.',
+    'Discover popular movies and tv shows, search for any movie you like and find some details about them.',
+  keywords: [
+    'Movies',
+    'Series',
+    'TV Shows',
+    'Movie Search',
+    'TV Show Search',
+    'Movie Catalog',
+    'TV Show Details',
+  ],
 }
 
 export default function RootLayout({ children }) {
