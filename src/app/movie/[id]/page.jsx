@@ -15,7 +15,7 @@ export default async function DetailsPage({ params }) {
   } = await getMovieDetails(id)
 
   return (
-    <main className='pt-20 pb-4 bg-[#646867]'>
+    <main className='pt-20 pb-4'>
       <MovieDetails
         title={title}
         poster={poster}

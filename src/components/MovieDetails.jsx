@@ -37,19 +37,19 @@ export default function MovieDetails({
 
   return (
     <section>
-      <div className='max-w-5xl w-full h-72 sm:h-80 md:h-[30rem] lg:h-[36rem] lg:mx-auto'>
+      <div className='relative w-full h-72 sm:h-80 md:h-[30rem] lg:h-[40rem] lg:mx-auto after:absolute after:bottom-0 after:z-[1] after:w-full after:h-[20%] after:bg-bannerMovieDetails'>
         <Image
           src={backdropImage}
           alt={`Banner of ${title}`}
           width={500}
           height={500}
           priority={true}
-          className='w-full h-full object-cover brightness-50'
+          className='w-full h-full object-cover brightness-50 lg:object-fill'
         />
       </div>
 
-      <article className='relative z-[2] max-w-5xl w-full px-2 py-6 flex flex-col items-center gap-4 md:mx-auto md:px-0 md:flex-row'>
-        <div className='absolute top-[-9rem] w-56 h-[21rem] z-[2] shadow-lg sm:w-80 sm:h-[30rem] md:static'>
+      <article className='relative z-[2] max-w-5xl w-full px-2 py-6 flex flex-col items-center gap-4 md:mx-auto md:p-0 md:top-[-3rem] md:flex-row'>
+        <div className='absolute top-[-9rem] w-56 h-[21rem] z-[2] shadow-lg sm:w-80 sm:h-[30rem] md:static md:flex-none'>
           <Image
             src={posterImage}
             alt={`Poster ${title}`}
@@ -59,7 +59,7 @@ export default function MovieDetails({
           />
         </div>
 
-        <section className='mt-[10.5rem] text-white sm:mt-[19.5rem] md:mt-0 md:self-start'>
+        <section className='mt-[10.5rem] sm:mt-[19.5rem] md:mt-0 md:self-start'>
           <h2 className='my-4 text-3xl font-bold text-center sm:text-4xl md:text-left'>
             {title} <span className='font-normal opacity-60'>({year})</span>
           </h2>
