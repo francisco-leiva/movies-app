@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { URL_IMAGE, URL_BACKDROP, NO_IMAGE } from '@/utils/constants'
+import Backdrop from './Backdrop'
+import { URL_IMAGE, NO_IMAGE } from '@/utils/constants'
 
 export default function MovieDetails({
   title,
@@ -11,8 +12,7 @@ export default function MovieDetails({
   backdrop,
   genres,
 }) {
-  // backdrop and poster can be null, in that case = NO_IMAGE, otherwise = full image url
-  const backdropImage = backdrop ? URL_BACKDROP + backdrop : NO_IMAGE
+  // poster can be null, in that case = NO_IMAGE, otherwise = full image url
   const posterImage = poster ? URL_IMAGE + poster : NO_IMAGE
 
   // example of releaseDate: '2023-05-31'
@@ -37,18 +37,9 @@ export default function MovieDetails({
 
   return (
     <section>
-      <div className='relative w-full h-72 sm:h-80 md:h-[30rem] lg:h-[40rem] lg:mx-auto after:absolute after:bottom-0 after:z-[1] after:w-full after:h-[20%] after:bg-bannerMovieDetails'>
-        <Image
-          src={backdropImage}
-          alt={`Banner of ${title}`}
-          width={500}
-          height={500}
-          priority={true}
-          className='w-full h-full object-cover brightness-50 lg:object-fill'
-        />
-      </div>
+      <Backdrop backdropImage={backdrop} />
 
-      <article className='relative z-[2] max-w-5xl w-full px-2 py-6 flex flex-col items-center gap-4 md:mx-auto md:p-0 md:top-[-3rem] md:flex-row'>
+      <article className='relative z-[2] max-w-5xl w-full px-2 py-6 flex flex-col items-center gap-4 md:mx-auto md:p-0 md:top-[-4rem] md:flex-row'>
         <div className='absolute top-[-9rem] w-56 h-[21rem] z-[2] shadow-lg sm:w-80 sm:h-[30rem] md:static md:flex-none'>
           <Image
             src={posterImage}
