@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Backdrop from './Backdrop'
-import { URL_IMAGE, NO_IMAGE } from '@/utils/constants'
+import { URL_IMAGE, IMAGE_NOT_FOUND } from '@/utils/constants'
 
 export default function MovieDetails({
   title,
@@ -12,8 +12,9 @@ export default function MovieDetails({
   backdrop,
   genres,
 }) {
-  // poster can be null, in that case = NO_IMAGE, otherwise = full image url
-  const posterImage = poster ? URL_IMAGE + poster : NO_IMAGE
+  // if poster is not null, full image url
+  // if poster is null, no image url
+  const posterImage = poster ? URL_IMAGE + poster : IMAGE_NOT_FOUND
 
   // example of releaseDate: '2023-05-31'
   // split release date by hyphens
@@ -22,7 +23,7 @@ export default function MovieDetails({
   const fullReleaseDate = date.reverse().join('/')
 
   // format hour
-  // function to convert minutes to hours and minutes
+  // function to convert minutes into hours and minutes
   const timeConvert = (min) => {
     const hours = min / 60
     const roundedHours = Math.floor(hours)
@@ -39,7 +40,7 @@ export default function MovieDetails({
     <section>
       <Backdrop backdropImage={backdrop} />
 
-      <article className='relative z-[2] max-w-5xl w-full px-2 py-6 flex flex-col items-center gap-4 md:mx-auto md:p-0 md:top-[-4rem] md:flex-row'>
+      <article className='relative z-[2] max-w-5xl w-full px-2 py-6 flex flex-col items-center gap-4 md:mx-auto md:p-0 md:top-[-3rem] md:flex-row'>
         <div className='absolute top-[-9rem] w-56 h-[21rem] z-[2] shadow-lg sm:w-80 sm:h-[30rem] md:static md:flex-none'>
           <Image
             src={posterImage}

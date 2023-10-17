@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { URL_IMAGE, NO_IMAGE } from '@/utils/constants'
+import { URL_IMAGE, IMAGE_NOT_FOUND } from '@/utils/constants'
 
 export default function TvCards({ id, image, title }) {
-  // image can be null, in that case movieImage = NO_IMAGE, otherwise movieImage = full image url
-  const movieImage = image ? URL_IMAGE + image : NO_IMAGE
+  // if image is not null, full image url
+  // if image is null, image not found
+  const movieImage = image ? URL_IMAGE + image : IMAGE_NOT_FOUND
 
   return (
     <div className='w-64 h-fit text-center'>
