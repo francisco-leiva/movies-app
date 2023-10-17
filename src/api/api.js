@@ -1,6 +1,39 @@
 import axios from 'axios'
 import { API_URL, API_KEY } from '@/utils/constants'
 
+export async function getTrendingMoviesAndTvShows() {
+  try {
+    const response = await axios.get(`${API_URL}/trending/all/week`, {
+      params: {
+        api_key: API_KEY,
+      },
+    })
+
+    const data = response.data.results
+    const mappedData = data.map((element) => {
+      if (element.media_type === 'movie') {
+        return {
+          id: element.id,
+          title: element.title,
+          poster: element.poster_path,
+          type: element.media_type,
+        }
+      } else {
+        return {
+          id: element.id,
+          title: element.name,
+          poster: element.poster_path,
+          type: element.media_type,
+        }
+      }
+    })
+
+    return mappedData
+  } catch (e) {
+    throw new Error("Can't get trending movies and tv shows", e)
+  }
+}
+
 export async function getPopularMovies() {
   try {
     const response = await axios.get(`${API_URL}/movie/popular`, {
@@ -18,28 +51,7 @@ export async function getPopularMovies() {
 
     return mappedMovies
   } catch (e) {
-    throw new Error('No se pudo encontrar la película')
-  }
-}
-
-export async function getNowPlayingMovies() {
-  try {
-    const response = await axios.get(`${API_URL}/movie/now_playing`, {
-      params: {
-        api_key: API_KEY,
-      },
-    })
-
-    const movies = response.data.results
-    const mappedMovies = movies.map((movie) => ({
-      id: movie.id,
-      title: movie.title,
-      poster: movie.poster_path,
-    }))
-
-    return mappedMovies
-  } catch (e) {
-    throw new Error('No se pudo encontrar la película')
+    throw new Error("Can't get popular movies", e)
   }
 }
 
@@ -60,7 +72,7 @@ export async function getPopularTvShows() {
 
     return mappedTvShows
   } catch (e) {
-    throw new Error('No se pudo encontrar la película')
+    throw new Error("Can't get popular tv shows", e)
   }
 }
 
@@ -82,7 +94,7 @@ export async function searchMovies(searchKey) {
 
     return mappedMoviesSearch
   } catch (e) {
-    throw new Error('No se pudo encontrar la película')
+    throw new Error("Can't search for movies", e)
   }
 }
 
@@ -108,6 +120,6 @@ export async function getMovieDetails(id) {
 
     return movieDetails
   } catch (e) {
-    throw new Error('No se pudo encontrar la película')
+    throw new Error("Can't get movie details", e)
   }
 }
