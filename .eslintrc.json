@@ -20,6 +20,7 @@
     "comma-dangle": "off",
     "space-before-function-paren": "off",
     "react/prop-types": "off",
-    "react/no-unknown-property": "off"
+    "react/no-unknown-property": "off",
+    "multiline-ternary": "off"
   }
 }

@@ -5,7 +5,7 @@ export default function NoResults() {
     <>
       <div className='grid place-items-center'>
         <h3 className='text-2xl text-center'>
-          Ups! No results found, try with another title.
+          Ups! No results found, try with another search.
         </h3>
       </div>
       <style jsx>{`
