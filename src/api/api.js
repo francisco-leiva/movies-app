@@ -60,11 +60,12 @@ export async function getPopularMovies() {
   }
 }
 
-export async function getPopularTvShows() {
+export async function getTrendingTvShows() {
   try {
-    const response = await axios.get(`${API_URL}/tv/popular`, {
+    const response = await axios.get(`${API_URL}/trending/tv/week`, {
       params: {
         api_key: API_KEY,
+        language: 'en-US',
       },
     })
 
@@ -120,9 +121,9 @@ export async function searchShows(searchKey) {
   }
 }
 
-export async function getMovieDetails(id) {
+export async function getMovieDetails(movieID) {
   try {
-    const response = await axios.get(`${API_URL}/movie/${id}`, {
+    const response = await axios.get(`${API_URL}/movie/${movieID}`, {
       params: {
         api_key: API_KEY,
       },
@@ -143,5 +144,30 @@ export async function getMovieDetails(id) {
     return movieDetails
   } catch (e) {
     throw new Error("Can't get movie details", e)
+  }
+}
+
+export async function getTvShowDetails(tvShowID) {
+  try {
+    const response = await axios.get(`${API_URL}/tv/${tvShowID}`, {
+      params: {
+        api_key: API_KEY,
+      },
+    })
+
+    const { data } = response
+    const tvShowDetails = {
+      title: data.name,
+      poster: data.poster_path,
+      tagline: data.tagline,
+      description: data.overview,
+      releaseDate: data.first_air_date,
+      backdrop: data.backdrop_path,
+      genres: data.genres,
+    }
+
+    return tvShowDetails
+  } catch (e) {
+    throw new Error("Can't get series details", e)
   }
 }
