@@ -51,6 +51,7 @@ export async function getPopularMovies() {
       id: movie.id,
       title: movie.title,
       poster: movie.poster_path,
+      type: 'movie',
     }))
 
     return mappedMovies
@@ -72,6 +73,7 @@ export async function getPopularTvShows() {
       id: show.id,
       title: show.name,
       poster: show.poster_path,
+      type: 'tv',
     }))
 
     return mappedTvShows
