@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { API_URL, API_KEY } from '@/utils/constants'
 
-export async function getTrendingMoviesAndTvShows() {
+export async function getTrendingShows() {
   try {
     const response = await axios.get(`${API_URL}/trending/all/week`, {
       params: {
@@ -10,25 +10,29 @@ export async function getTrendingMoviesAndTvShows() {
     })
 
     const data = response.data.results
-    const mappedData = data.map((element) => {
-      if (element.media_type === 'movie') {
-        return {
-          id: element.id,
-          title: element.title,
-          poster: element.poster_path,
-          type: element.media_type,
+    // filter data only for movies and tv shows
+    // then mapped movies and tv shows
+    const newData = data
+      .filter((el) => el.media_type !== 'person')
+      .map((element) => {
+        if (element.media_type === 'movie') {
+          return {
+            id: element.id,
+            title: element.title,
+            poster: element.poster_path,
+            type: element.media_type,
+          }
+        } else {
+          return {
+            id: element.id,
+            title: element.name,
+            poster: element.poster_path,
+            type: element.media_type,
+          }
         }
-      } else {
-        return {
-          id: element.id,
-          title: element.name,
-          poster: element.poster_path,
-          type: element.media_type,
-        }
-      }
-    })
+      })
 
-    return mappedData
+    return newData
   } catch (e) {
     throw new Error("Can't get trending movies and tv shows", e)
   }
@@ -76,25 +80,41 @@ export async function getPopularTvShows() {
   }
 }
 
-export async function searchMovies(searchKey) {
+export async function searchShows(searchKey) {
   try {
-    const response = await axios.get(`${API_URL}/search/movie`, {
+    const response = await axios.get(`${API_URL}/search/multi`, {
       params: {
         api_key: API_KEY,
         query: searchKey,
       },
     })
 
-    const movieSearch = response.data.results
-    const mappedMoviesSearch = movieSearch.map((movie) => ({
-      id: movie.id,
-      title: movie.title,
-      poster: movie.poster_path,
-    }))
+    const data = response.data.results
+    // filter data only for movies and tv shows
+    // then mapped movies and tv shows
+    const newData = data
+      .filter((el) => el.media_type !== 'person')
+      .map((element) => {
+        if (element.media_type === 'movie') {
+          return {
+            id: element.id,
+            title: element.title,
+            poster: element.poster_path,
+            type: element.media_type,
+          }
+        } else {
+          return {
+            id: element.id,
+            title: element.name,
+            poster: element.poster_path,
+            type: element.media_type,
+          }
+        }
+      })
 
-    return mappedMoviesSearch
+    return newData
   } catch (e) {
-    throw new Error("Can't search for movies", e)
+    throw new Error("Can't search for movies and tv shows", e)
   }
 }
 
