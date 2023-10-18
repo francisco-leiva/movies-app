@@ -1,7 +1,7 @@
 import { getMovieDetails } from '@/api/api'
 import MovieDetails from '@/components/MovieDetails'
 
-export default async function DetailsPage({ params }) {
+export default async function MovieDetailsPage({ params }) {
   const { id } = params
   const {
     title,
