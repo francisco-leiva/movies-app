@@ -164,6 +164,8 @@ export async function getTvShowDetails(tvShowID) {
       releaseDate: data.first_air_date,
       backdrop: data.backdrop_path,
       genres: data.genres,
+      episodes: data.number_of_episodes,
+      seasons: data.number_of_seasons,
     }
 
     return tvShowDetails

@@ -2,15 +2,19 @@ import Image from 'next/image'
 import Backdrop from './Backdrop'
 import { URL_IMAGE, IMAGE_NOT_FOUND } from '@/utils/constants'
 
-export default function TvShowDetails({
-  title,
-  poster,
-  tagline,
-  description,
-  releaseDate,
-  backdrop,
-  genres,
-}) {
+export default function TvShowDetails({ details }) {
+  const {
+    title,
+    poster,
+    tagline,
+    description,
+    releaseDate,
+    backdrop,
+    genres,
+    episodes,
+    seasons,
+  } = details
+
   // if poster is not null, full image url
   // if poster is null, no image url
   const posterImage = poster ? URL_IMAGE + poster : IMAGE_NOT_FOUND
@@ -44,6 +48,8 @@ export default function TvShowDetails({
 
           <ul className='mb-4 flex justify-center flex-wrap gap-2 text-xl md:justify-normal'>
             <li>&#x2022; {genresNames}</li>
+            <li>&#x2022; Seasons: {seasons}</li>
+            <li>&#x2022; Episodes: {episodes}</li>
           </ul>
 
           <p className='mb-4 italic font-semibold text-xl text-center opacity-60 md:text-left'>

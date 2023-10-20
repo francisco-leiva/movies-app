@@ -2,16 +2,17 @@ import Image from 'next/image'
 import Backdrop from './Backdrop'
 import { URL_IMAGE, IMAGE_NOT_FOUND } from '@/utils/constants'
 
-export default function MovieDetails({
-  title,
-  poster,
-  tagline,
-  description,
-  releaseDate,
-  runtime,
-  backdrop,
-  genres,
-}) {
+export default function MovieDetails({ details }) {
+  const {
+    title,
+    poster,
+    tagline,
+    description,
+    releaseDate,
+    runtime,
+    backdrop,
+    genres,
+  } = details
   // if poster is not null, full image url
   // if poster is null, no image url
   const posterImage = poster ? URL_IMAGE + poster : IMAGE_NOT_FOUND
