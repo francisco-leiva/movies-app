@@ -58,7 +58,7 @@ export default function MovieDetails({ details }) {
           </h2>
 
           <ul className='mb-4 flex justify-center flex-wrap gap-2 text-xl md:justify-normal'>
-            <li>&#x2022; {fullReleaseDate}</li>
+            <li>{fullReleaseDate}</li>
 
             <li>&#x2022; {genresNames}</li>
 

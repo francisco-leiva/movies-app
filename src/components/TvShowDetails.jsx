@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import Backdrop from './Backdrop'
 import { URL_IMAGE, IMAGE_NOT_FOUND } from '@/utils/constants'
+import Backdrop from './Backdrop'
+import TvSeasonsDetails from './TvSeasonsDetails'
 
 export default function TvShowDetails({ details }) {
   const {
@@ -11,7 +12,6 @@ export default function TvShowDetails({ details }) {
     releaseDate,
     backdrop,
     genres,
-    episodes,
     seasons,
   } = details
 
@@ -47,9 +47,7 @@ export default function TvShowDetails({ details }) {
           </h2>
 
           <ul className='mb-4 flex justify-center flex-wrap gap-2 text-xl md:justify-normal'>
-            <li>&#x2022; {genresNames}</li>
-            <li>&#x2022; Seasons: {seasons}</li>
-            <li>&#x2022; Episodes: {episodes}</li>
+            <li>{genresNames}</li>
           </ul>
 
           <p className='mb-4 italic font-semibold text-xl text-center opacity-60 md:text-left'>
@@ -61,10 +59,18 @@ export default function TvShowDetails({ details }) {
               Overview
             </h3>
 
-            <p className='max-w-xl text-xl'>{description}</p>
+            <p className='max-w-[40rem] text-xl'>{description}</p>
           </div>
         </section>
       </article>
+
+      <section className='max-w-5xl w-full px-2 py-6 flex flex-col gap-6 md:p-0 md:pb-4 md:mx-auto'>
+        <h2 className='font-bold text-3xl text-center sm:text-start'>
+          Seasons
+        </h2>
+
+        <TvSeasonsDetails seasons={seasons} />
+      </section>
     </section>
   )
 }
