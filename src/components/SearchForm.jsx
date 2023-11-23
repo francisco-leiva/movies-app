@@ -9,18 +9,20 @@ export default function SearchForm() {
   const [openSearch, setOpenSearch] = useState(false)
   const router = useRouter()
 
+  // function to open search input
+  const handleOpen = () => setOpenSearch(!openSearch)
+  // form functions
   const handleChange = (e) => setSearchKey(e.target.value)
   const handleSubmit = (e) => {
     e.preventDefault()
-    searchKey && router.push(`/search/${searchKey}`)
+    if (!searchKey) return
+
+    router.push(`/search/${searchKey}`)
     setTimeout(() => {
       setOpenSearch(false)
       e.target.reset()
-    }, 600)
+    }, 1000)
   }
-
-  // function to open search input
-  const handleOpen = () => setOpenSearch(!openSearch)
 
   return (
     <form className='flex justify-end sm:w-60' onSubmit={handleSubmit}>

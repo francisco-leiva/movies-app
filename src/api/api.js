@@ -3,6 +3,8 @@ import { API_URL, API_KEY } from '@/utils/constants'
 
 export async function getTrendingShows() {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     const response = await axios.get(`${API_URL}/trending/all/week`, {
       params: {
         api_key: API_KEY,
@@ -34,12 +36,14 @@ export async function getTrendingShows() {
 
     return newData
   } catch (e) {
-    throw new Error("Can't get trending movies and tv shows", e)
+    throw new Error('Failed to fetch trending movies and tv shows', e)
   }
 }
 
 export async function getPopularMovies() {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     const response = await axios.get(`${API_URL}/movie/popular`, {
       params: {
         api_key: API_KEY,
@@ -62,6 +66,8 @@ export async function getPopularMovies() {
 
 export async function getTrendingTvShows() {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     const response = await axios.get(`${API_URL}/trending/tv/week`, {
       params: {
         api_key: API_KEY,
@@ -79,12 +85,14 @@ export async function getTrendingTvShows() {
 
     return mappedTvShows
   } catch (e) {
-    throw new Error("Can't get popular tv shows", e)
+    throw new Error('Failded to fetch popular tv shows', e)
   }
 }
 
 export async function searchShows(searchKey) {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     const response = await axios.get(`${API_URL}/search/multi`, {
       params: {
         api_key: API_KEY,
@@ -117,12 +125,14 @@ export async function searchShows(searchKey) {
 
     return newData
   } catch (e) {
-    throw new Error("Can't search for movies and tv shows", e)
+    throw new Error('Failed to search for movies and tv shows', e)
   }
 }
 
 export async function getMovieDetails(movieID) {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     const response = await axios.get(`${API_URL}/movie/${movieID}`, {
       params: {
         api_key: API_KEY,
@@ -143,12 +153,14 @@ export async function getMovieDetails(movieID) {
 
     return movieDetails
   } catch (e) {
-    throw new Error("Can't get movie details", e)
+    throw new Error('Failed to fetch movie details', e)
   }
 }
 
 export async function getTvShowDetails(tvShowID) {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     const response = await axios.get(`${API_URL}/tv/${tvShowID}`, {
       params: {
         api_key: API_KEY,
@@ -170,6 +182,6 @@ export async function getTvShowDetails(tvShowID) {
 
     return tvShowDetails
   } catch (e) {
-    throw new Error("Can't get series details", e)
+    throw new Error('Failed to fetch series details', e)
   }
 }
