@@ -1,6 +1,8 @@
 import './globals.css'
+import { Suspense } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import Loading from './loading'
 
 export const metadata = {
   title: 'Cineflix',
@@ -23,7 +25,7 @@ export default function RootLayout({ children }) {
       <body>
         <Header />
 
-        {children}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
 
         <Footer />
       </body>

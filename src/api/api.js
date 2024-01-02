@@ -3,8 +3,6 @@ import { API_URL, API_KEY } from '@/utils/constants'
 
 export async function getTrendingShows() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
     const response = await axios.get(`${API_URL}/trending/all/week`, {
       params: {
         api_key: API_KEY,
@@ -42,8 +40,6 @@ export async function getTrendingShows() {
 
 export async function getPopularMovies() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
     const response = await axios.get(`${API_URL}/movie/popular`, {
       params: {
         api_key: API_KEY,
@@ -66,8 +62,6 @@ export async function getPopularMovies() {
 
 export async function getTrendingTvShows() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
     const response = await axios.get(`${API_URL}/trending/tv/week`, {
       params: {
         api_key: API_KEY,
@@ -91,8 +85,6 @@ export async function getTrendingTvShows() {
 
 export async function searchShows(searchKey) {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
     const response = await axios.get(`${API_URL}/search/multi`, {
       params: {
         api_key: API_KEY,
@@ -131,8 +123,6 @@ export async function searchShows(searchKey) {
 
 export async function getMovieDetails(movieID) {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
     const response = await axios.get(`${API_URL}/movie/${movieID}`, {
       params: {
         api_key: API_KEY,
@@ -159,8 +149,6 @@ export async function getMovieDetails(movieID) {
 
 export async function getTvShowDetails(tvShowID) {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
     const response = await axios.get(`${API_URL}/tv/${tvShowID}`, {
       params: {
         api_key: API_KEY,
