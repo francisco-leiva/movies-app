@@ -16,7 +16,7 @@ export default function TvSeasonsDetails({ seasons }) {
         } = season
 
         // example of date: '2023-05-31'
-        const [year] = date.split('-')
+        const year = date ? date.split('-')[0] : 'N/A'
 
         // form the text '6 episodes' or '1 episode'
         const episodes = `${episodeCount} ${
