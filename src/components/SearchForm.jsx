@@ -18,10 +18,6 @@ export default function SearchForm() {
     if (!searchKey) return
 
     router.push(`/search/${searchKey}`)
-    setTimeout(() => {
-      setOpenSearch(false)
-      e.target.reset()
-    }, 1000)
   }
 
   return (
