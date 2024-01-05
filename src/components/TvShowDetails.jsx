@@ -20,8 +20,7 @@ export default function TvShowDetails({ details }) {
   const posterImage = poster ? URL_IMAGE + poster : IMAGE_NOT_FOUND
 
   // example of releaseDate: '2023-05-31'
-  // split release date by hyphens and get the year
-  const [year] = releaseDate.split('-')
+  const year = new Date(releaseDate).getFullYear()
 
   // get genres names and join them in a string
   const genresNames = genres.map((genre) => genre.name).join(', ')
