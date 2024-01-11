@@ -21,6 +21,7 @@
     "space-before-function-paren": "off",
     "react/prop-types": "off",
     "react/no-unknown-property": "off",
-    "multiline-ternary": "off"
+    "multiline-ternary": "off",
+    "camelcase": "warn"
   }
 }
