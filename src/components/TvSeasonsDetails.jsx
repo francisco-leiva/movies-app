@@ -28,7 +28,7 @@ export default function TvSeasonsDetails({ seasons }) {
           return (
             <article
               key={id}
-              className='flex flex-col gap-2 sm:flex-row sm:gap-0'
+              className='flex flex-col gap-2 sm:flex-row sm:gap-0 sm:justify-center'
             >
               <div className='w-40 h-60 flex-none self-center sm:self-start'>
                 <Image
@@ -40,7 +40,7 @@ export default function TvSeasonsDetails({ seasons }) {
                 />
               </div>
 
-              <div className='max-w-2xl w-full sm:p-2 sm:pl-4 sm:border sm:border-[rgb(227,227,227)] sm:rounded-r-lg sm:shadow-md'>
+              <div className='max-w-2xl w-full sm:p-2 sm:pl-4 sm:rounded-r-lg sm:shadow-lg'>
                 <h3 className='font-bold text-2xl text-center sm:text-left'>
                   {name}
                 </h3>
@@ -50,7 +50,7 @@ export default function TvSeasonsDetails({ seasons }) {
                   <li>&#x2022; {episodes}</li>
                 </ul>
 
-                <p className='mt-1 text-lg text-center sm:text-start'>
+                <p className='px-4 py-3 text-lg sm:pl-0 sm:py-0'>
                   {overview || 'No overview'}
                 </p>
               </div>

@@ -18,10 +18,9 @@ export default function MovieDetails({ details }) {
   const posterImage = poster ? URL_IMAGE + poster : IMAGE_NOT_FOUND
 
   // example of releaseDate: '2023-05-31'
-  // split release date by hyphens
-  const date = releaseDate.split('-')
-  const year = date[0]
-  const fullReleaseDate = date.reverse().join('/')
+  const date = new Date(releaseDate)
+  const year = date.getFullYear()
+  const fullReleaseDate = date.toLocaleDateString('en-US')
 
   // format hour
   // function to convert minutes into hours and minutes
@@ -34,49 +33,58 @@ export default function MovieDetails({ details }) {
   }
   const formattedRuntime = timeConvert(runtime)
 
-  // get genres names and join them in a string
-  const genresNames = genres.map((genre) => genre.name).join(', ')
-
   return (
     <section>
       <Backdrop backdropImage={backdrop} />
 
-      <article className='relative z-[2] max-w-5xl w-full px-2 py-6 flex flex-col items-center gap-4 md:mx-auto md:p-0 md:top-[-3rem] md:flex-row'>
-        <div className='absolute top-[-9rem] w-56 h-[21rem] z-[2] shadow-lg sm:w-80 sm:h-[30rem] md:static md:flex-none'>
-          <Image
-            src={posterImage}
-            alt={`Poster ${title}`}
-            width={500}
-            height={500}
-            className='w-full h-full rounded-lg'
-          />
-        </div>
+      <article className='max-w-5xl mt-8 mx-3 md:h-[calc(100vh-12rem)] lg:mx-auto'>
+        <div className='w-full px-2 py-6 bg-black bg-opacity-50 flex flex-col items-center gap-4 md:p-0 md:flex-row'>
+          <div className='w-56 h-[21rem] shadow-lg sm:w-80 sm:h-[30rem] md:flex-none'>
+            <Image
+              src={posterImage}
+              alt={`Poster ${title}`}
+              width={500}
+              height={500}
+              className='w-full h-full rounded-lg md:rounded-none'
+            />
+          </div>
 
-        <section className='mt-[10.5rem] sm:mt-[19.5rem] md:mt-0 md:self-start'>
-          <h2 className='my-4 text-3xl font-bold text-center sm:text-4xl md:text-left'>
-            {title} <span className='font-normal opacity-60'>({year})</span>
-          </h2>
+          <section className='text-white md:self-start'>
+            <div className='my-4 text-3xl text-center sm:text-4xl md:text-left'>
+              <h2 className='inline font-bold'>{title}</h2>
 
-          <ul className='mb-4 flex justify-center flex-wrap gap-2 text-xl md:justify-normal'>
-            <li>{fullReleaseDate}</li>
+              <span className='ml-2 font-normal opacity-60'>({year})</span>
+            </div>
 
-            <li>&#x2022; {genresNames}</li>
-
-            <li>&#x2022; {formattedRuntime}</li>
-          </ul>
-
-          <p className='mb-4 italic font-semibold text-xl text-center opacity-60 md:text-left'>
-            {tagline}
-          </p>
-
-          <div>
-            <h3 className='mb-2 font-bold text-2xl text-center md:text-left'>
-              Overview
+            <h3 className='my-4 italic font-semibold text-xl text-center opacity-70 md:text-left'>
+              {tagline}
             </h3>
 
-            <p className='max-w-xl text-xl'>{description}</p>
-          </div>
-        </section>
+            <ul className='my-4 px-3 flex flex-col gap-2 text-xl md:px-0'>
+              <li>Release date: {fullReleaseDate}</li>
+
+              <li>Duration: {formattedRuntime}</li>
+
+              <li className='flex flex-wrap gap-2'>
+                {genres.map(({ id, name }) => {
+                  return (
+                    <span key={id} className='p-1 bg-[#3365dd] rounded'>
+                      {name}
+                    </span>
+                  )
+                })}
+              </li>
+            </ul>
+
+            <div>
+              <h4 className='mb-2 font-bold text-2xl text-center md:text-left'>
+                Overview
+              </h4>
+
+              <p className='max-w-xl text-xl px-3 md:px-0'>{description}</p>
+            </div>
+          </section>
+        </div>
       </article>
     </section>
   )
