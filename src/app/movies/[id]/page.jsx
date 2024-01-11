@@ -3,11 +3,29 @@ import MovieDetails from '@/components/MovieDetails'
 
 export default async function MovieDetailsPage({ params }) {
   const { id } = params
-  const details = await getMovieDetails(id)
+  const {
+    title,
+    posterPath,
+    tagline,
+    description,
+    releaseDate,
+    runtime,
+    backdropPath,
+    genres,
+  } = await getMovieDetails(id)
 
   return (
     <main className='pt-20 pb-4'>
-      <MovieDetails details={details} />
+      <MovieDetails
+        title={title}
+        posterPath={posterPath}
+        tagline={tagline}
+        description={description}
+        releaseDate={releaseDate}
+        runtime={runtime}
+        backdropPath={backdropPath}
+        genres={genres}
+      />
     </main>
   )
 }

@@ -2,20 +2,19 @@ import Image from 'next/image'
 import Backdrop from './Backdrop'
 import { URL_IMAGE, IMAGE_NOT_FOUND } from '@/utils/constants'
 
-export default function MovieDetails({ details }) {
-  const {
-    title,
-    poster,
-    tagline,
-    description,
-    releaseDate,
-    runtime,
-    backdrop,
-    genres,
-  } = details
+export default function MovieDetails({
+  title,
+  posterPath,
+  tagline,
+  description,
+  releaseDate,
+  runtime,
+  backdropPath,
+  genres,
+}) {
   // if poster is not null, full image url
   // if poster is null, no image url
-  const posterImage = poster ? URL_IMAGE + poster : IMAGE_NOT_FOUND
+  const posterImage = posterPath ? URL_IMAGE + posterPath : IMAGE_NOT_FOUND
 
   // example of releaseDate: '2023-05-31'
   const date = new Date(releaseDate)
@@ -35,7 +34,7 @@ export default function MovieDetails({ details }) {
 
   return (
     <section>
-      <Backdrop backdropImage={backdrop} />
+      <Backdrop backdropImage={backdropPath} />
 
       <article className='max-w-5xl mt-8 mx-3 md:h-[calc(100vh-12rem)] lg:mx-auto'>
         <div className='w-full px-2 py-6 bg-black bg-opacity-50 flex flex-col items-center gap-4 md:p-0 md:flex-row'>
