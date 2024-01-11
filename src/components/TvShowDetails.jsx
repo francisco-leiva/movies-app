@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { URL_IMAGE, IMAGE_NOT_FOUND } from '@/utils/constants'
 import Backdrop from './Backdrop'
-import TvSeasonsDetails from './TvSeasonsDetails'
+import SeasonDetails from './SeasonDetails'
 
 export default function TvShowDetails({ details }) {
   const {
@@ -78,7 +78,27 @@ export default function TvShowDetails({ details }) {
         </h2>
 
         <div className='flex flex-col gap-6'>
-          <TvSeasonsDetails seasons={seasons} />
+          {seasons.map(
+            ({
+              air_date: airDate,
+              episode_count: episodeCount,
+              id,
+              name,
+              overview,
+              poster_path: posterPath,
+            }) => {
+              return (
+                <SeasonDetails
+                  key={id}
+                  airDate={airDate}
+                  episodeCount={episodeCount}
+                  name={name}
+                  overview={overview}
+                  posterPath={posterPath}
+                />
+              )
+            }
+          )}
         </div>
       </section>
     </section>
