@@ -147,6 +147,28 @@ export async function getMovieDetails(movieID) {
   }
 }
 
+export async function getMovieCast(movieID) {
+  try {
+    const response = await axios.get(`${API_URL}/movie/${movieID}/credits`, {
+      params: {
+        api_key: API_KEY,
+      },
+    })
+
+    const data = response.data.cast
+    const movieCast = data.map((castMember) => ({
+      id: castMember.id,
+      name: castMember.name,
+      character: castMember.character,
+      profilePath: castMember.profile_path,
+    }))
+
+    return movieCast
+  } catch (e) {
+    throw new Error('Failed to fetch movie cast', e)
+  }
+}
+
 export async function getTvShowDetails(tvShowID) {
   try {
     const response = await axios.get(`${API_URL}/tv/${tvShowID}`, {
@@ -171,5 +193,27 @@ export async function getTvShowDetails(tvShowID) {
     return tvShowDetails
   } catch (e) {
     throw new Error('Failed to fetch series details', e)
+  }
+}
+
+export async function getTvShowCast(tvShowID) {
+  try {
+    const response = await axios.get(`${API_URL}/tv/${tvShowID}/credits`, {
+      params: {
+        api_key: API_KEY,
+      },
+    })
+
+    const data = response.data.cast
+    const tvShowCast = data.map((castMember) => ({
+      id: castMember.id,
+      name: castMember.name,
+      character: castMember.character,
+      profilePath: castMember.profile_path,
+    }))
+
+    return tvShowCast
+  } catch (e) {
+    throw new Error('Failed to fetch tv show cast', e)
   }
 }
