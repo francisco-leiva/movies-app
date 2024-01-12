@@ -33,10 +33,10 @@ export default function MovieDetails({
   const formattedRuntime = timeConvert(runtime)
 
   return (
-    <section>
+    <>
       <Backdrop backdropImage={backdropPath} />
 
-      <article className='max-w-5xl mt-8 mx-3 md:h-[calc(100vh-12rem)] lg:mx-auto'>
+      <section className='max-w-5xl mt-8 mx-3 lg:mx-auto'>
         <div className='w-full px-2 py-6 bg-black bg-opacity-50 flex flex-col items-center gap-4 md:p-0 md:flex-row'>
           <div className='w-56 h-[21rem] shadow-lg sm:w-80 sm:h-[30rem] md:flex-none'>
             <Image
@@ -48,7 +48,7 @@ export default function MovieDetails({
             />
           </div>
 
-          <section className='text-white md:self-start'>
+          <article className='text-white md:self-start'>
             <div className='my-4 text-3xl text-center sm:text-4xl md:text-left'>
               <h2 className='inline font-bold'>{title}</h2>
 
@@ -82,9 +82,9 @@ export default function MovieDetails({
 
               <p className='max-w-xl text-xl px-3 md:px-0'>{description}</p>
             </div>
-          </section>
+          </article>
         </div>
-      </article>
-    </section>
+      </section>
+    </>
   )
 }

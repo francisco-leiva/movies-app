@@ -13,7 +13,7 @@ export default function Header() {
           </h1>
 
           <nav className='hidden sm:inline'>
-            <ul className='flex gap-5 text-white text-2xl'>
+            <ul className='flex gap-5 text-white text-xl'>
               {NAVBAR_LINKS.map((link) => {
                 return (
                   <li key={link.name}>
