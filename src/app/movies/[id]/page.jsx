@@ -1,5 +1,6 @@
-import { getMovieDetails } from '@/api/api'
+import { getMovieDetails, getMovieCast } from '@/api/api'
 import MovieDetails from '@/components/MovieDetails'
+import Cast from '@/components/Cast'
 
 export default async function MovieDetailsPage({ params }) {
   const { id } = params
@@ -13,6 +14,7 @@ export default async function MovieDetailsPage({ params }) {
     backdropPath,
     genres,
   } = await getMovieDetails(id)
+  const movieCast = await getMovieCast(id)
 
   return (
     <main className='pt-20 pb-4'>
@@ -26,6 +28,8 @@ export default async function MovieDetailsPage({ params }) {
         backdropPath={backdropPath}
         genres={genres}
       />
+
+      <Cast cast={movieCast} />
     </main>
   )
 }
