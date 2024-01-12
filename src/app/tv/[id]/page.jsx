@@ -1,5 +1,7 @@
-import { getTvShowDetails } from '@/api/api'
+import { getTvShowDetails, getTvShowCast } from '@/api/api'
 import TvShowDetails from '@/components/TvShowDetails'
+import Seasons from '@/components/Seasons'
+import Cast from '@/components/Cast'
 
 export default async function SeriesDetailsPage({ params }) {
   const { id } = params
@@ -13,6 +15,7 @@ export default async function SeriesDetailsPage({ params }) {
     genres,
     seasons,
   } = await getTvShowDetails(id)
+  const tvShowCast = await getTvShowCast(id)
 
   return (
     <main className='pt-20 pb-4'>
@@ -24,8 +27,11 @@ export default async function SeriesDetailsPage({ params }) {
         releaseDate={releaseDate}
         backdropPath={backdropPath}
         genres={genres}
-        seasons={seasons}
       />
+
+      <Cast cast={tvShowCast} />
+
+      <Seasons seasons={seasons} />
     </main>
   )
 }
