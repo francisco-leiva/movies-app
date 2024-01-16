@@ -35,9 +35,9 @@ export default function SeasonDetails({
       <div className='max-w-2xl w-full sm:p-2 sm:pl-4 sm:rounded-r-lg sm:shadow-lg'>
         <h3 className='font-bold text-2xl text-center sm:text-left'>{name}</h3>
 
-        <ul className='flex gap-1 text-lg font-semibold justify-center sm:justify-start'>
-          <li>{year}</li>
-          <li>&#x2022; {episodes}</li>
+        <ul className='text-lg font-semibold text-center sm:text-start'>
+          <li className='inline'>{year}</li>
+          <li className='inline ml-1'>&#x2022; {episodes}</li>
         </ul>
 
         <p className='px-4 py-3 text-lg sm:pl-0 sm:py-0'>
