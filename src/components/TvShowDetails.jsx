@@ -45,16 +45,14 @@ export default function TvShowDetails({
               {tagline}
             </h3>
 
-            <ul className='my-4 px-3 flex flex-col gap-2 text-xl md:px-0'>
-              <li className='flex flex-wrap gap-2'>
-                {genres.map(({ id, name }) => {
-                  return (
-                    <span key={id} className='p-1 bg-[#3365dd] rounded'>
-                      {name}
-                    </span>
-                  )
-                })}
-              </li>
+            <ul className='my-4 px-3 flex flex-wrap gap-2 text-xl md:px-0'>
+              {genres.map(({ id, name }) => {
+                return (
+                  <li key={id} className='p-1 bg-[#3365dd] rounded'>
+                    {name}
+                  </li>
+                )
+              })}
             </ul>
 
             <div>
@@ -62,7 +60,9 @@ export default function TvShowDetails({
                 Overview
               </h4>
 
-              <p className='max-w-xl text-xl px-3 md:px-0'>{description}</p>
+              <p className='max-w-xl text-xl text-pretty px-3 md:px-0'>
+                {description}
+              </p>
             </div>
           </article>
         </div>

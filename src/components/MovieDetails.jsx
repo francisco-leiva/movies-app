@@ -64,15 +64,15 @@ export default function MovieDetails({
 
               <li>Duration: {formattedRuntime}</li>
 
-              <li className='flex flex-wrap gap-2'>
+              <ul className='flex flex-wrap gap-2'>
                 {genres.map(({ id, name }) => {
                   return (
-                    <span key={id} className='p-1 bg-[#3365dd] rounded'>
+                    <li key={id} className='p-1 bg-[#3365dd] rounded'>
                       {name}
-                    </span>
+                    </li>
                   )
                 })}
-              </li>
+              </ul>
             </ul>
 
             <div>
@@ -80,7 +80,9 @@ export default function MovieDetails({
                 Overview
               </h4>
 
-              <p className='max-w-xl text-xl px-3 md:px-0'>{description}</p>
+              <p className='max-w-xl text-xl text-pretty px-3 md:px-0'>
+                {description}
+              </p>
             </div>
           </article>
         </div>
