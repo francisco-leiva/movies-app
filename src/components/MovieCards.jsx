@@ -9,7 +9,7 @@ export default function MovieCards({ id, image, title }) {
 
   return (
     <div className='w-64 h-fit text-center'>
-      <Link href={`/movies/${id}`}>
+      <Link href={`/movies/${id}`} aria-label={`Learn more about ${title}`}>
         <div className='h-96'>
           <Image
             src={movieImage}
