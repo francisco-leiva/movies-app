@@ -1,6 +1,6 @@
 import { getTvShowDetails, getTvShowCast } from '@/api/api'
-import TvShowDetails from '@/components/TvShowDetails'
-import Seasons from '@/components/Seasons'
+import TvShowDetails from './components/TvShowDetails'
+import Seasons from './components/Seasons'
 import Cast from '@/components/Cast'
 
 export default async function SeriesDetailsPage({ params }) {

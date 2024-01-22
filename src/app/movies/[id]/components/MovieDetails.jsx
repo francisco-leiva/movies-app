@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Backdrop from './Backdrop'
+import Backdrop from '@/components/Backdrop'
 import { URL_IMAGE, IMAGE_NOT_FOUND } from '@/utils/constants'
 
 export default function MovieDetails({

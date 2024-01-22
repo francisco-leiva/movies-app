@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { URL_IMAGE, IMAGE_NOT_FOUND } from '@/utils/constants'
-import Backdrop from './Backdrop'
+import Backdrop from '@/components/Backdrop'
 
 export default function TvShowDetails({
   title,

@@ -1,5 +1,5 @@
 import { getMovieDetails, getMovieCast } from '@/api/api'
-import MovieDetails from '@/components/MovieDetails'
+import MovieDetails from './components/MovieDetails'
 import Cast from '@/components/Cast'
 
 export default async function MovieDetailsPage({ params }) {
