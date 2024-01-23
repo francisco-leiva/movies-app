@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { API_URL, API_KEY } from '@/utils/constants'
 
-export async function getTrendingShows() {
+export async function getTrendingShows(numPage = 1) {
   try {
     const response = await axios.get(`${API_URL}/trending/all/week`, {
       params: {
         api_key: API_KEY,
+        page: numPage,
       },
     })
 
@@ -38,11 +39,12 @@ export async function getTrendingShows() {
   }
 }
 
-export async function getPopularMovies() {
+export async function getPopularMovies(numPage = 1) {
   try {
     const response = await axios.get(`${API_URL}/movie/popular`, {
       params: {
         api_key: API_KEY,
+        page: numPage,
       },
     })
 
@@ -60,12 +62,13 @@ export async function getPopularMovies() {
   }
 }
 
-export async function getTrendingTvShows() {
+export async function getTrendingTvShows(numPage = 1) {
   try {
     const response = await axios.get(`${API_URL}/trending/tv/week`, {
       params: {
         api_key: API_KEY,
         language: 'en-US',
+        page: numPage,
       },
     })
 
@@ -83,19 +86,25 @@ export async function getTrendingTvShows() {
   }
 }
 
-export async function searchShows(searchKey) {
+export async function searchShows(searchKey, numPage = 1) {
   try {
     const response = await axios.get(`${API_URL}/search/multi`, {
       params: {
         api_key: API_KEY,
         query: searchKey,
+        page: numPage,
       },
     })
 
     const data = response.data.results
+    const totalPages = response.data.total_pages
+
+    // if no results, return undefined
+    if (!data.length) return
+
     // filter by movies and tv shows
     // then return an object for each one
-    const searchResults = data
+    const results = data
       .filter((el) => el.media_type !== 'person')
       .map((element) => {
         if (element.media_type === 'movie') {
@@ -115,7 +124,7 @@ export async function searchShows(searchKey) {
         }
       })
 
-    return searchResults
+    return { results, totalPages }
   } catch (e) {
     throw new Error('Failed to search for movies and tv shows', e)
   }
