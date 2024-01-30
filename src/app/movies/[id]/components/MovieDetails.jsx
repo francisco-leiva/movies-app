@@ -1,6 +1,5 @@
 import Image from 'next/image'
-import Backdrop from '@/components/Backdrop'
-import { URL_IMAGE, IMAGE_NOT_FOUND } from '@/utils/constants'
+import { URL_IMAGE, IMAGE_NOT_FOUND, URL_BACKDROP } from '@/utils/constants'
 
 export default function MovieDetails({
   title,
@@ -12,9 +11,16 @@ export default function MovieDetails({
   backdropPath,
   genres,
 }) {
-  // if poster is not null, full image url
-  // if poster is null, no image url
+  // if don't exist poster or backdrop path, image will be an image or color by default
   const posterImage = posterPath ? URL_IMAGE + posterPath : IMAGE_NOT_FOUND
+  const backdropImage = backdropPath
+    ? `url(${URL_BACKDROP + backdropPath})`
+    : '#ffffff'
+
+  const backdropStyles = {
+    background: `${backdropImage} no-repeat center`,
+    backgroundSize: 'cover',
+  }
 
   // example of releaseDate: '2023-05-31'
   const date = new Date(releaseDate)
@@ -34,7 +40,10 @@ export default function MovieDetails({
 
   return (
     <>
-      <Backdrop backdropImage={backdropPath} />
+      <div
+        style={backdropStyles}
+        className='fixed top-20 w-full h-[100svh] z-[-1] brightness-50'
+      ></div>
 
       <section className='max-w-5xl mt-8 mx-3 lg:mx-auto'>
         <div className='w-full px-2 py-6 bg-black bg-opacity-50 flex flex-col items-center gap-4 md:p-0 md:flex-row'>
@@ -43,7 +52,7 @@ export default function MovieDetails({
               src={posterImage}
               alt={`Poster ${title}`}
               width={500}
-              height={500}
+              height={750}
               className='w-full h-full rounded-lg md:rounded-none'
             />
           </div>
