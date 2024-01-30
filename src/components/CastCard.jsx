@@ -9,8 +9,8 @@ export default function CastCard({ name, character, profilePath }) {
       <Image
         src={img}
         alt={name}
-        width={100}
-        height={150}
+        width={500}
+        height={750}
         className='w-36 h-52'
       />
 

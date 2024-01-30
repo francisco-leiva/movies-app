@@ -15,9 +15,8 @@ export default function TvCards({ id, image, title }) {
             src={tvImage}
             alt={`Poster ${title}`}
             width={500}
-            height={500}
-            priority={true}
-            className='w-full h-full object-cover rounded-lg'
+            height={750}
+            className='h-full object-cover rounded-lg'
           />
         </div>
 

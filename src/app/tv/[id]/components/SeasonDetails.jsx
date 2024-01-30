@@ -27,7 +27,7 @@ export default function SeasonDetails({
           src={seasonPoster}
           alt={name}
           width={500}
-          height={500}
+          height={750}
           className='w-full h-full rounded-lg sm:rounded-r-none'
         />
       </div>
