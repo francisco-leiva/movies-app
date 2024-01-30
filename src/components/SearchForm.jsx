@@ -9,47 +9,63 @@ export default function SearchForm() {
   const [openSearch, setOpenSearch] = useState(false)
   const router = useRouter()
 
-  // function to open search input
+  // open search input
   const handleOpen = () => setOpenSearch(!openSearch)
-  // form functions
+  // set search key
   const handleChange = (e) => setSearchKey(e.target.value)
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!searchKey) return
 
+    setOpenSearch(false)
     router.push(`/search/${searchKey}`)
   }
 
   return (
-    <form className='flex justify-end sm:w-60' onSubmit={handleSubmit}>
-      <input
-        id='search'
-        className={`${
-          openSearch ? 'inline' : 'hidden'
-        } absolute w-screen h-12 top-20 left-0 z-50 text-lg indent-3 border-t-2 border-b-2 border-solid border-y-[#E3E3E3] focus:outline-none sm:inline sm:w-full sm:h-9 sm:static sm:border-0 sm:rounded-l-full`}
-        type='text'
-        placeholder='Search'
-        onChange={handleChange}
-      />
+    <form className='h-9 sm:w-60' onSubmit={handleSubmit}>
+      {/* mobile search */}
+      <div className='sm:hidden'>
+        <button
+          type='button'
+          aria-label='Open search input'
+          onClick={handleOpen}
+        >
+          <SearchIcon />
+        </button>
 
-      {/* mobile search button */}
-      <button
-        type='button'
-        aria-label='Open search input'
-        className='sm:hidden'
-        onClick={handleOpen}
-      >
-        <SearchIcon />
-      </button>
+        <div
+          className={`${
+            openSearch ? 'block' : 'hidden'
+          } absolute w-screen h-screen top-20 left-0 backdrop-blur-sm`}
+        >
+          <input
+            id='search'
+            className='w-full h-14 text-lg indent-3 border-t-2 border-b-2 border-solid border-y-gray-300 focus:outline-none'
+            type='text'
+            placeholder='Search'
+            onChange={handleChange}
+          />
+        </div>
+      </div>
 
-      {/* desktop search button */}
-      <button
-        type='submit'
-        className='hidden sm:inline sm:px-2 sm:bg-white sm:rounded-r-full'
-        aria-label='Submit'
-      >
-        <SearchIcon />
-      </button>
+      {/* desktop search */}
+      <div className='hidden sm:flex'>
+        <input
+          id='search'
+          className='w-4/5 h-9 rounded-l-full text-lg indent-3 focus:outline-none'
+          type='text'
+          placeholder='Search'
+          onChange={handleChange}
+        />
+
+        <button
+          type='submit'
+          className='w-1/5 px-2 bg-white rounded-r-full'
+          aria-label='Submit'
+        >
+          <SearchIcon />
+        </button>
+      </div>
     </form>
   )
 }

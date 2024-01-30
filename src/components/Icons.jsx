@@ -3,7 +3,7 @@ export function SearchIcon() {
     <svg
       xmlns='http://www.w3.org/2000/svg'
       width='32'
-      height='32'
+      height='36'
       fill='none'
       strokeWidth='1.5'
       color='#000'
