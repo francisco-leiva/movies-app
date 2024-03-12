@@ -32,7 +32,7 @@ export default async function SearchPage({ searchParams }) {
 
       {searchResults && (
         <CustomPagination
-          path='search'
+          path={'search'}
           query={q}
           totalPages={searchResults.totalPages}
         />

@@ -12,18 +12,20 @@ export default function CustomPagination({ path, query, totalPages }) {
     }
 
     if (path === 'search') {
-      <Link
-        key={key}
-        ref={ref}
-        href={`/search?q=${query}&page=${value}`}
-        className={cn(
-          className,
-          isActive && 'text-white bg-primary-600 font-bold'
-        )}
-        onClick={() => setPage(value)}
-      >
-        {value}
-      </Link>
+      return (
+        <Link
+          key={key}
+          ref={ref}
+          href={`/search?q=${query}&page=${value}`}
+          className={cn(
+            className,
+            isActive && 'text-white bg-primary-600 font-bold'
+          )}
+          onClick={() => setPage(value)}
+        >
+          {value}
+        </Link>
+      )
     }
 
     return (
