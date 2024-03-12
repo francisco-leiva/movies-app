@@ -1,13 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-import { Pagination } from '@nextui-org/react'
 import { getPopularMovies } from '@/api/api'
 import MovieCards from '@/components/MovieCards'
+import CustomPagination from '@/components/CustomPagination'
 
-export default async function Movies() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const popularMovies = await getPopularMovies(currentPage)
+export default async function Movies({ searchParams }) {
+  const { page } = searchParams
+  const popularMovies = await getPopularMovies(page)
 
   return (
     <main className='pt-24 pb-4'>
@@ -19,14 +18,7 @@ export default async function Movies() {
         })}
       </section>
 
-      <div className='max-w-4xl mx-auto'>
-        <Pagination
-          page={currentPage}
-          total={10}
-          onChange={setCurrentPage}
-          className='w-fit mx-auto my-4'
-        />
-      </div>
+      <CustomPagination path={'movies'} totalPages={10} />
     </main>
   )
 }

@@ -18,7 +18,7 @@ export default function SearchForm() {
     if (!searchKey) return
 
     setOpenSearch(false)
-    router.push(`/search/${searchKey}`)
+    router.push(`/search?q=${searchKey}&page=1`)
   }
 
   return (

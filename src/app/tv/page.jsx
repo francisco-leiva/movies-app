@@ -1,13 +1,12 @@
 'use client'
 
-import { useState } from 'react'
-import { Pagination } from '@nextui-org/react'
 import { getTrendingTvShows } from '@/api/api'
 import TvCards from '@/components/TvCards'
+import CustomPagination from '@/components/CustomPagination'
 
-export default async function Tv() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const trendingTvShows = await getTrendingTvShows(currentPage)
+export default async function Tv({ searchParams }) {
+  const { page } = searchParams
+  const trendingTvShows = await getTrendingTvShows(page)
 
   return (
     <main className='pt-24 pb-4'>
@@ -17,14 +16,7 @@ export default async function Tv() {
         })}
       </section>
 
-      <div className='max-w-4xl mx-auto'>
-        <Pagination
-          page={currentPage}
-          total={10}
-          onChange={setCurrentPage}
-          className='w-fit mx-auto my-4'
-        />
-      </div>
+      <CustomPagination path={'tv'} totalPages={10} />
     </main>
   )
 }

@@ -4,8 +4,8 @@ export const API_KEY = 'c1680bf7e0c2d3bb0c5f997c43d0a3f2'
 
 // header navbar links
 export const NAVBAR_LINKS = [
-  { name: 'Movies', href: '/movies' },
-  { name: 'TV Shows', href: '/tv' },
+  { name: 'Movies', href: '/movies?page=1' },
+  { name: 'TV Shows', href: '/tv?page=1' },
 ]
 
 // URLs to get movies or tv shows posters
