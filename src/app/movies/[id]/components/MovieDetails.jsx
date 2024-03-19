@@ -53,6 +53,7 @@ export default function MovieDetails({
               alt={`Poster ${title}`}
               width={500}
               height={750}
+              loading='eager'
               className='w-full h-full rounded-lg md:rounded-none'
             />
           </div>
