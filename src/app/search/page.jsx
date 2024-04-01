@@ -44,13 +44,13 @@ export default async function SearchPage({ searchParams }) {
         )}
       </section>
 
-      {searchResults && (
+      {searchResults ? (
         <CustomPagination
           path={'search'}
           query={q}
           totalPages={searchResults.totalPages}
         />
-      )}
+      ) : null}
     </main>
   )
 }

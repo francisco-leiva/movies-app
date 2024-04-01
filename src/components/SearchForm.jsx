@@ -16,7 +16,9 @@ export default function SearchForm() {
     if (!inputRef.current.value) return
 
     setOpenSearch(false)
-    router.push(`/search?q=${inputRef.current.value}&page=1`)
+    router.push(
+      `/search?${new URLSearchParams({ q: inputRef.current.value, page: 1 })}`
+    )
   }
 
   return (
