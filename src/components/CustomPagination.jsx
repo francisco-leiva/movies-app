@@ -16,12 +16,15 @@ export default function CustomPagination({ path, query, totalPages }) {
         <Link
           key={key}
           ref={ref}
-          href={`/search?q=${query}&page=${value}`}
+          href={`/search?${new URLSearchParams({
+            q: query,
+            page: value,
+          })}`}
           className={cn(
             className,
             isActive && 'text-white bg-primary-600 font-bold'
           )}
-          onClick={() => setPage(value)}
+          onClick={() => setPage((prev) => value)}
         >
           {value}
         </Link>
@@ -32,12 +35,20 @@ export default function CustomPagination({ path, query, totalPages }) {
       <Link
         key={key}
         ref={ref}
-        href={!path ? `/?page=${value}` : `/${path}?page=${value}`}
+        href={
+          !path
+            ? `?${new URLSearchParams({
+                page: value,
+              })}`
+            : `/${path}?${new URLSearchParams({
+                page: value,
+              })}`
+        }
         className={cn(
           className,
           isActive && 'text-white bg-primary-600 font-bold'
         )}
-        onClick={() => setPage(value)}
+        onClick={() => setPage((prev) => value)}
       >
         {value}
       </Link>
