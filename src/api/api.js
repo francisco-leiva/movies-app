@@ -1,55 +1,46 @@
-import axios from 'axios'
 import { API_URL, API_KEY } from '@/utils/constants'
 
-export async function getTrendingShows(numPage = 1) {
+export async function getTrendingShows(page = 1) {
   try {
-    const response = await axios.get(`${API_URL}/trending/all/week`, {
-      params: {
-        api_key: API_KEY,
-        page: numPage,
-      },
-    })
+    const params = new URLSearchParams({ api_key: API_KEY, page })
+    const response = await fetch(`${API_URL}/trending/all/week?${params}`)
 
-    const data = response.data.results
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+
+    const data = await response.json()
     // filter by movies and tv shows
     // then return an object for each one
-    const trendingShows = data
+    const trendingShows = data.results
       .filter((el) => el.media_type !== 'person')
       .map((element) => {
-        if (element.media_type === 'movie') {
-          return {
-            id: element.id,
-            title: element.title,
-            posterPath: element.poster_path,
-            type: element.media_type,
-          }
-        } else {
-          return {
-            id: element.id,
-            title: element.name,
-            posterPath: element.poster_path,
-            type: element.media_type,
-          }
-        }
+        const id = element.id
+        const title =
+          element.media_type === 'movie' ? element.title : element.name
+        const posterPath = element.poster_path
+        const type = element.media_type
+
+        return { id, title, posterPath, type }
       })
 
     return trendingShows
   } catch (e) {
-    throw new Error('Failed to fetch trending movies and tv shows', e)
+    console.error('Failded to fetch trending shows, response status:', e)
   }
 }
 
-export async function getPopularMovies(numPage = 1) {
+export async function getPopularMovies(page = 1) {
   try {
-    const response = await axios.get(`${API_URL}/movie/popular`, {
-      params: {
-        api_key: API_KEY,
-        page: numPage,
-      },
-    })
+    const params = new URLSearchParams({ api_key: API_KEY, page })
+    const response = await fetch(`${API_URL}/movie/popular?${params}`)
 
-    const data = response.data.results
-    const popularMovies = data.map((movie) => ({
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+
+    const data = await response.json()
+    const popularMovies = data.results.map((movie) => ({
       id: movie.id,
       title: movie.title,
       posterPath: movie.poster_path,
@@ -58,22 +49,25 @@ export async function getPopularMovies(numPage = 1) {
 
     return popularMovies
   } catch (e) {
-    throw new Error("Can't get popular movies", e)
+    console.error('Failded to fetch popular movies, response status:', e)
   }
 }
 
-export async function getTrendingTvShows(numPage = 1) {
+export async function getTrendingTvShows(page = 1) {
   try {
-    const response = await axios.get(`${API_URL}/trending/tv/week`, {
-      params: {
-        api_key: API_KEY,
-        language: 'en-US',
-        page: numPage,
-      },
+    const params = new URLSearchParams({
+      api_key: API_KEY,
+      language: 'en-US',
+      page,
     })
+    const response = await fetch(`${API_URL}/trending/tv/week?${params}`)
 
-    const data = response.data.results
-    const trendingTvShows = data.map((show) => ({
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+
+    const data = await response.json()
+    const trendingTvShows = data.results.map((show) => ({
       id: show.id,
       title: show.name,
       posterPath: show.poster_path,
@@ -82,63 +76,55 @@ export async function getTrendingTvShows(numPage = 1) {
 
     return trendingTvShows
   } catch (e) {
-    throw new Error('Failded to fetch popular tv shows', e)
+    console.error('Failded to fetch trending tv shows, response status:', e)
   }
 }
 
-export async function searchShows(searchKey, numPage = 1) {
+export async function searchShows(query, page = 1) {
   try {
-    const response = await axios.get(`${API_URL}/search/multi`, {
-      params: {
-        api_key: API_KEY,
-        query: searchKey,
-        page: numPage,
-      },
+    const params = new URLSearchParams({
+      api_key: API_KEY,
+      query,
+      page,
     })
+    const response = await fetch(`${API_URL}/search/multi?${params}`)
 
-    const data = response.data.results
-    const totalPages = response.data.total_pages
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
 
-    // if no results, return undefined
-    if (!data.length) return
-
+    const data = await response.json()
+    const totalPages = data.total_pages
     // filter by movies and tv shows
     // then return an object for each one
-    const results = data
-      .filter((el) => el.media_type !== 'person')
-      .map((element) => {
-        if (element.media_type === 'movie') {
-          return {
-            id: element.id,
-            title: element.title,
-            posterPath: element.poster_path,
-            type: element.media_type,
-          }
-        } else {
-          return {
-            id: element.id,
-            title: element.name,
-            posterPath: element.poster_path,
-            type: element.media_type,
-          }
-        }
+    const searchResults = data.results
+      ?.filter((el) => el.media_type !== 'person')
+      ?.map((element) => {
+        const id = element.id
+        const title =
+          element.media_type === 'movie' ? element.title : element.name
+        const posterPath = element.poster_path
+        const type = element.media_type
+
+        return { id, title, posterPath, type }
       })
 
-    return { results, totalPages }
+    return { searchResults, totalPages }
   } catch (e) {
-    throw new Error('Failed to search for movies and tv shows', e)
+    console.error('Failed to search shows, response status:', e)
   }
 }
 
 export async function getMovieDetails(movieID) {
   try {
-    const response = await axios.get(`${API_URL}/movie/${movieID}`, {
-      params: {
-        api_key: API_KEY,
-      },
-    })
+    const params = new URLSearchParams({ api_key: API_KEY })
+    const response = await fetch(`${API_URL}/movie/${movieID}?${params}`)
 
-    const { data } = response
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+
+    const data = await response.json()
     const movieDetails = {
       title: data.title,
       posterPath: data.poster_path,
@@ -152,20 +138,23 @@ export async function getMovieDetails(movieID) {
 
     return movieDetails
   } catch (e) {
-    throw new Error('Failed to fetch movie details', e)
+    console.error('Failed to fetch movie details, response status:', e)
   }
 }
 
 export async function getMovieCast(movieID) {
   try {
-    const response = await axios.get(`${API_URL}/movie/${movieID}/credits`, {
-      params: {
-        api_key: API_KEY,
-      },
-    })
+    const params = new URLSearchParams({ api_key: API_KEY })
+    const response = await fetch(
+      `${API_URL}/movie/${movieID}/credits?${params}`
+    )
 
-    const data = response.data.cast
-    const movieCast = data.map((castMember) => ({
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+
+    const data = await response.json()
+    const movieCast = data.cast.map((castMember) => ({
       id: castMember.id,
       name: castMember.name,
       character: castMember.character,
@@ -174,19 +163,20 @@ export async function getMovieCast(movieID) {
 
     return movieCast
   } catch (e) {
-    throw new Error('Failed to fetch movie cast', e)
+    console.error('Failed to fetch movie cast, response status:', e)
   }
 }
 
 export async function getTvShowDetails(tvShowID) {
   try {
-    const response = await axios.get(`${API_URL}/tv/${tvShowID}`, {
-      params: {
-        api_key: API_KEY,
-      },
-    })
+    const params = new URLSearchParams({ api_key: API_KEY })
+    const response = await fetch(`${API_URL}/tv/${tvShowID}?${params}`)
 
-    const { data } = response
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+
+    const data = await response.json()
     const tvShowDetails = {
       title: data.name,
       posterPath: data.poster_path,
@@ -201,20 +191,21 @@ export async function getTvShowDetails(tvShowID) {
 
     return tvShowDetails
   } catch (e) {
-    throw new Error('Failed to fetch series details', e)
+    console.error('Failed to fetch tv show details, response status:', e)
   }
 }
 
 export async function getTvShowCast(tvShowID) {
   try {
-    const response = await axios.get(`${API_URL}/tv/${tvShowID}/credits`, {
-      params: {
-        api_key: API_KEY,
-      },
-    })
+    const params = new URLSearchParams({ api_key: API_KEY })
+    const response = await fetch(`${API_URL}/tv/${tvShowID}/credits?${params}`)
 
-    const data = response.data.cast
-    const tvShowCast = data.map((castMember) => ({
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+
+    const data = await response.json()
+    const tvShowCast = data.cast.map((castMember) => ({
       id: castMember.id,
       name: castMember.name,
       character: castMember.character,
@@ -223,6 +214,6 @@ export async function getTvShowCast(tvShowID) {
 
     return tvShowCast
   } catch (e) {
-    throw new Error('Failed to fetch tv show cast', e)
+    console.error('Failed to fetch tv show cast, response status:', e)
   }
 }
