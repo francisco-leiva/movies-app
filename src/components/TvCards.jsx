@@ -16,7 +16,6 @@ export default function TvCards({ id, image, title, index }) {
             alt={`Poster ${title}`}
             width={500}
             height={750}
-            loading={index < 6 ? 'eager' : 'lazy'}
             className='h-full object-cover rounded-lg'
           />
         </div>
